@@ -14,15 +14,16 @@ export default function configureStore() {
 
   let middlewares = [thunkMiddleware] as Array<Middleware>;
 
-  if (process.env.NODE_ENV !== 'production') {
-    middlewares.push(createLogger());
-  }
+  //if (process.env.NODE_ENV !== 'production') {
+  //  middlewares.push(createLogger());
+  //}
 
   const middleWareEnhancer = applyMiddleware(...middlewares);
 
   const store = createStore(
     rootReducer,
-    composeWithDevTools(middleWareEnhancer)
+    middleWareEnhancer
+    //composeWithDevTools(middleWareEnhancer)
   );
   
   return store;
